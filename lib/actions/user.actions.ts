@@ -2,16 +2,17 @@
 
 import { revalidatePath } from "next/cache";
 
+import User from "../database/models/user.model";
 import { connectToDatabase } from "../database/mongoose";
 import { handleError } from "../utils";
-import UserModel from "../database/models/user.model";
 
 // CREATE
 export async function createUser(user: CreateUserParams) {
   try {
+    console.log("Trying to connect database");
     await connectToDatabase();
 
-    const newUser = await UserModel.create(user);
+    const newUser = await User.create(user);
 
     return JSON.parse(JSON.stringify(newUser));
   } catch (error) {
@@ -24,7 +25,7 @@ export async function getUserById(userId: string) {
   try {
     await connectToDatabase();
 
-    const user = await UserModel.findOne({ clerkId: userId });
+    const user = await User.findOne({ clerkId: userId });
 
     if (!user) throw new Error("User not found");
 
@@ -39,7 +40,7 @@ export async function updateUser(clerkId: string, user: UpdateUserParams) {
   try {
     await connectToDatabase();
 
-    const updatedUser = await UserModel.findOneAndUpdate({ clerkId }, user, {
+    const updatedUser = await User.findOneAndUpdate({ clerkId }, user, {
       new: true,
     });
 
@@ -57,14 +58,14 @@ export async function deleteUser(clerkId: string) {
     await connectToDatabase();
 
     // Find user to delete
-    const userToDelete = await UserModel.findOne({ clerkId });
+    const userToDelete = await User.findOne({ clerkId });
 
     if (!userToDelete) {
       throw new Error("User not found");
     }
 
     // Delete user
-    const deletedUser = await UserModel.findByIdAndDelete(userToDelete._id);
+    const deletedUser = await User.findByIdAndDelete(userToDelete._id);
     revalidatePath("/");
 
     return deletedUser ? JSON.parse(JSON.stringify(deletedUser)) : null;
@@ -78,7 +79,7 @@ export async function updateCredits(userId: string, creditFee: number) {
   try {
     await connectToDatabase();
 
-    const updatedUserCredits = await UserModel.findOneAndUpdate(
+    const updatedUserCredits = await User.findOneAndUpdate(
       { _id: userId },
       { $inc: { creditBalance: creditFee } },
       { new: true }
