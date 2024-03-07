@@ -22,6 +22,6 @@ const UserSchema = new Schema({
   creditBalance: { type: Number, default: 10 },
 });
 
-const User = models?.User || model("User", UserSchema);
+const UserModel = models?.User || model("User", UserSchema);
 
-export default User;
+export default UserModel;
