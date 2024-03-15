@@ -12,7 +12,7 @@ export function cn(...inputs: ClassValue[]) {
 
 // ERROR HANDLER
 export const handleError = (error: unknown) => {
-  if (error instanceof Error) {
+  /* if (error instanceof Error) {
     // This is a native JavaScript error (e.g., TypeError, RangeError)
     console.error(error.message);
     throw new Error(`Error: ${error.message}`);
@@ -24,7 +24,8 @@ export const handleError = (error: unknown) => {
     // This is an unknown type of error
     console.error(error);
     throw new Error(`Unknown error: ${JSON.stringify(error)}`);
-  }
+  } */
+  console.error(error);
 };
 
 // PLACEHOLDER LOADER - while image is transforming

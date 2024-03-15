@@ -1,52 +1,43 @@
-import home from "@/public/assets/icons/home.svg";
-import image from "@/public/assets/icons/image.svg";
-import stars from "@/public/assets/icons/stars.svg";
-import scan from "@/public/assets/icons/scan.svg";
-import filter from "@/public/assets/icons/filter.svg";
-import camera from "@/public/assets/icons/camera.svg";
-import profile from "@/public/assets/icons/profile.svg";
-import bag from "@/public/assets/icons/bag.svg";
-
 export const navLinks = [
   {
     label: "Home",
     route: "/",
-    icon: home,
+    icon: "/assets/icons/home.svg",
   },
   {
     label: "Image Restore",
     route: "/transformations/add/restore",
-    icon: image,
+    icon: "/assets/icons/image.svg",
   },
   {
     label: "Generative Fill",
     route: "/transformations/add/fill",
-    icon: stars,
+    icon: "/assets/icons/stars.svg",
   },
   {
     label: "Object Remove",
     route: "/transformations/add/remove",
-    icon: scan,
+    icon: "/assets/icons/scan.svg",
   },
   {
     label: "Object Recolor",
     route: "/transformations/add/recolor",
-    icon: filter,
+    icon: "/assets/icons/filter.svg",
   },
   {
     label: "Background Remove",
     route: "/transformations/add/removeBackground",
-    icon: camera,
+    icon: "/assets/icons/camera.svg",
   },
   {
     label: "Profile",
     route: "/profile",
-    icon: profile,
+    icon: "/assets/icons/profile.svg",
   },
   {
     label: "Buy Credits",
     route: "/credits",
-    icon: bag,
+    icon: "/assets/icons/bag.svg",
   },
 ];
 
@@ -54,7 +45,7 @@ export const plans = [
   {
     _id: 1,
     name: "Free",
-    icon: "/public/assets/icons/free-plan.svg",
+    icon: "/assets/icons/free-plan.svg",
     price: 0,
     credits: 20,
     inclusions: [
@@ -79,7 +70,7 @@ export const plans = [
   {
     _id: 2,
     name: "Pro Package",
-    icon: "/public/assets/icons/free-plan.svg",
+    icon: "/assets/icons/free-plan.svg",
     price: 40,
     credits: 120,
     inclusions: [
@@ -104,7 +95,7 @@ export const plans = [
   {
     _id: 3,
     name: "Premium Package",
-    icon: "/public/assets/icons/free-plan.svg",
+    icon: "/assets/icons/free-plan.svg",
     price: 199,
     credits: 2000,
     inclusions: [

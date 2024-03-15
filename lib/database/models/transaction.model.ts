@@ -5,8 +5,15 @@ const TransactionSchema = new Schema({
     type: Date,
     default: Date.now,
   },
-  stripeId: { type: String, require: true, unique: true },
-  amount: { type: Number, require: true },
+  stripeId: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  amount: {
+    type: Number,
+    required: true,
+  },
   plan: {
     type: String,
   },
@@ -19,7 +26,6 @@ const TransactionSchema = new Schema({
   },
 });
 
-const Transaction =
-  models?.Transaction || model("Transaction", TransactionSchema);
+const Transaction = models?.Transaction || model("Transaction", TransactionSchema);
 
 export default Transaction;
