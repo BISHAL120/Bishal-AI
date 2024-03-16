@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams, useRouter } from "next/navigation";
-import { CldImage } from "next-cloudinary";
+// import { CldImage } from "next-cloudinary";
 
 import {
   Pagination,
@@ -11,7 +11,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
-import { transformationTypes } from "@/constants";
+// import { transformationTypes } from "@/constants";
 import { IImage } from "@/lib/database/models/image.model";
 import { formUrlQuery } from "@/lib/utils";
 
@@ -20,12 +20,12 @@ import { Button } from "../ui/button";
 import { Search } from "./Search";
 
 export const Collection = ({
-  hasSearch = false,
+  hasSearch = true,
   images,
-  totalPages = 1,
+  totalPages,
   page,
 }: {
-  images: IImage[];
+  images: string[];
   totalPages?: number;
   page: number;
   hasSearch?: boolean;
@@ -55,8 +55,8 @@ export const Collection = ({
 
       {images.length > 0 ? (
         <ul className="collection-list">
-          {images.map((image) => (
-            <Card image={image} key={image._id} />
+          {images.slice(0, 6).map((image, index) => (
+            <Card index={index} image={image} key={image._id} />
           ))}
         </ul>
       ) : (
@@ -94,11 +94,12 @@ export const Collection = ({
   );
 };
 
-const Card = ({ image }: { image: IImage }) => {
+const Card = ({ image, index }: { image: string[]; index: Number }) => {
+  console.log(index);
   return (
     <li>
       <Link href={`/transformations/${image._id}`} className="collection-card">
-        <CldImage
+        {/* <CldImage
           src={image.publicId}
           alt={image.title}
           width={image.width}
@@ -107,17 +108,20 @@ const Card = ({ image }: { image: IImage }) => {
           loading="lazy"
           className="h-52 w-full rounded-[10px] object-cover"
           sizes="(max-width: 767px) 100vw, (max-width: 1279px) 50vw, 33vw"
+        /> */}
+        <Image
+          src="/9908191.png"
+          alt="sample image"
+          width={500}
+          height={500}
+          loading="lazy"
         />
         <div className="flex-between">
           <p className="p-20-semibold mr-3 line-clamp-1 text-dark-600">
-            {image.title}
+            {`Sample Title`}
           </p>
           <Image
-            src={`/assets/icons/${
-              transformationTypes[
-                image.transformationType as TransformationTypeKey
-              ].icon
-            }`}
+            src="/assets/icons/download.svg"
             alt={image.title}
             width={24}
             height={24}
